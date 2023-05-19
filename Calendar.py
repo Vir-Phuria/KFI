@@ -1,0 +1,25 @@
+import tkinter as tk
+from tkinter import ttk
+import calendar
+def show_calendar():
+    year = int(year_entry.get())
+    month = int(month_combobox.get())
+    cal_content = calendar.month(year, month)
+    result_text.delete('1.0', tk.END)
+    result_text.insert(tk.END, cal_content)
+root = tk.Tk()
+root.title("GUI Calendar")
+year_label = tk.Label(root, text="Year:")
+year_label.grid(row=0, column=0, padx=5, pady=5)
+year_entry = tk.Entry(root)
+year_entry.grid(row=0, column=1, padx=5, pady=5)
+month_label = tk.Label(root, text="Month:")
+month_label.grid(row=1, column=0, padx=5, pady=5)
+month_combobox = ttk.Combobox(root, values=list(range(1, 13)), state="readonly")
+month_combobox.grid(row=1, column=1, padx=5, pady=5)
+month_combobox.current(0)
+show_button = tk.Button(root, text="Show Calendar", command=show_calendar)
+show_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
+result_text = tk.Text(root, height=10, width=30)
+result_text.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
+root.mainloop()
